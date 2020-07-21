@@ -29,6 +29,8 @@ class RegistroPessoalCovid19App extends StatelessWidget {
 
 class Tela1 extends StatelessWidget {
   static const int BUTTON_COLOR = 0xffc4dff6;
+
+  // TODO: resolver esse não const
   BuildContext context;
 
   @override
@@ -52,7 +54,6 @@ class Tela1 extends StatelessWidget {
       body: Column(
         children: <Container>[
           Container(
-            //---padding: EdgeInsets.all(20),
             margin: EdgeInsets.all(20),
             child: Image.asset('assets/images/redcross.png', width: 110, height: 110, fit: BoxFit.cover),
           ),
@@ -93,8 +94,6 @@ class Tela1 extends StatelessWidget {
 
   ///---Cria botôes customizados em largura, cor, estilo de Texto,e ação a manipular
   ButtonTheme buildButtonTheme(String txtRaisedButton) {
-    //BuildContext context = navigatorKey.currentState.overlay.context;
-
     return ButtonTheme(
       minWidth: 250.0,
       child: RaisedButton(
