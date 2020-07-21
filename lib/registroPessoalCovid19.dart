@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-const String APP_TITLE = "Registro Pessoal: covid-19";
+import 'constants.dart';
 
 ///----------------------------------------------------------------------------
 
