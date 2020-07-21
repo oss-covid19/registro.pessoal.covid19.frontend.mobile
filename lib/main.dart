@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-const String TELA_TITULO = "Registro Pessoal - covid-19";
+import 'constants.dart';
 
 void main() {
   runApp(App());
