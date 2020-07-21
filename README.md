@@ -23,6 +23,4 @@ Mantemos gravado tambem o email e senha (hash), pra manter o vínculo do App com
 
 O App soma a quantidade de pessoas que estão junto com você controlando seu estado de saúde em tempo real.
 
-* hashDaSuaSenha: é uma impressão digital da sua senha. Não gravamos sua senha e sim a impressão digital dela, portanto não ficará gravado sequer sua senha.
-
-
+* hashDaSuaSenha: é uma impressão digital da sua senha. Não gravamos sua senha e sim a impressão digital dela, portanto não ficará gravado sequer sua senha.s
