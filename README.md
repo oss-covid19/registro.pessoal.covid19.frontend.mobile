@@ -1,1 +1,1 @@
-# registro.pessoal.covid19
+# registro.pessoal.covid19.frontend
