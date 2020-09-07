@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 ///
 /// hasConexao:      Se há conexão: wifi ou dados
 /// isLogado:        Se Usuário fez Login ou não
-/// isEntrar:        Ação que o Usuário está fazendo no momento
-/// isEsqueciASenha: Ação que o Usuário está fazendo no momento
-/// isInscrever:     Ação que o Usuário está fazendo no momento
+/// isEntrar:        Ação escolhida pelo Usuário
+/// isEsqueciASenha: Ação escolhida pelo Usuário
+/// isInscrever:     Ação escolhida pelo Usuário
 ///
 
 class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
