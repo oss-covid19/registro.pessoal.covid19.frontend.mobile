@@ -16,7 +16,7 @@ void main() {
       expect(estado.isLogado, true);
     });
 
-    test('Testa conexao ativa de internet', () async {
+    test('Testa estado conexao ativa de internet', () async {
       await isConectado().then((value) => estado.hasConexao = value);
       expect(estado.hasConexao, true);
     });
