@@ -14,7 +14,7 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
   bool _hasConexao = false;
 
   bool get hasConexao => _hasConexao;
-  void set hasConexao(bool hasConexao) =>
+  set hasConexao(bool hasConexao) =>
       {_hasConexao = isLogado, notifyListeners()};
 
   ///-------------------------------------------------------------------------
@@ -22,21 +22,21 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
   bool _isLogado = false;
 
   bool get isLogado => _isLogado;
-  void set isLogado(bool isLogado) => {_isLogado = isLogado, notifyListeners()};
+  set isLogado(bool isLogado) => {_isLogado = isLogado, notifyListeners()};
 
   ///-------------------------------------------------------------------------
 
   bool _isEntrar = false;
 
   bool get isEntrar => _isEntrar;
-  void set isEntrar(bool isEntrar) => {_isEntrar = isEntrar, notifyListeners()};
+  set isEntrar(bool isEntrar) => {_isEntrar = isEntrar, notifyListeners()};
 
   ///-------------------------------------------------------------------------
 
   bool _isEsqueciASenha = false;
 
   bool get isEsqueciASenha => _isEsqueciASenha;
-  void set isEsqueciASenha(bool isEsqueciASenha) =>
+  set isEsqueciASenha(bool isEsqueciASenha) =>
       {_isEsqueciASenha = isEsqueciASenha, notifyListeners()};
 
   ///-------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
   bool _isInscrever = false;
 
   bool get isInscrever => _isInscrever;
-  void set isInscrever(bool isInscrever) =>
+  set isInscrever(bool isInscrever) =>
       {_isInscrever = isInscrever, notifyListeners()};
 
   ///
@@ -63,7 +63,9 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
   ///--------------------------------------------------------------------------
   /// Default: tests
   ///
-  AppModel() {}
+  AppModel() {
+    ///---does nothing
+  }
 
   ///--------------------------------------------------------------------------
   /// referencia ao contexto obtido na criação do App
