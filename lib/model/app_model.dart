@@ -69,7 +69,7 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
 
   ///--------------------------------------------------------------------------
   /// referencia ao contexto obtido na criação do App
-  static BuildContext _context = null;
+  static BuildContext _context;
 
   static AppModel instance() {
     return Provider.of<AppModel>(_context, listen: false);
