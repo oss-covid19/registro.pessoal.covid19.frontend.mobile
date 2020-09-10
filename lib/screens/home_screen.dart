@@ -135,7 +135,6 @@ class Home extends StatelessWidget {
   static ShapeBorder defineButtonShape() {
     return RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(18),
-      //side: BorderSide(color: Colors.red)
     );
   }
 }
@@ -154,7 +153,6 @@ Future<bool> showDialogoSaida(BuildContext context) {
         FlatButton(
           child: Text('Sim'),
           onPressed: () => Navigator.popAndPushNamed(context, LOGIN_PAGE),
-          //onPressed: () => SystemNavigator.pop(),
         ),
         FlatButton(
           child: Text('Não'),
