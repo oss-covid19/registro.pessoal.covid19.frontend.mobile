@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../util/constants.dart';
 import 'esqueceu_senha_screen.dart';
 import 'home_screen.dart';
 import 'inscricao_screen.dart';
@@ -17,6 +16,7 @@ const String SUMARIO_PAGE = '/sumario';
 ///
 /// Rotas nomeadas
 ///
+// ignore: missing_return
 Route onGenerateRoute(RouteSettings routeSettings) {
   if (routeSettings.name == ESQUECEU_SENHA_PAGE) {
     return MaterialPageRoute(builder: (context) => EsqueceuSenha());

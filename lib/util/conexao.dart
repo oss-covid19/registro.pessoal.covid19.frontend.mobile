@@ -14,7 +14,7 @@ Future<bool> isConectado() async {
       isConectado = result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     }
   } on SocketException catch (e) {
-    ;
+    print(e.toString());
   }
   return Future<bool>.value(isConectado);
 }

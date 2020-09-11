@@ -60,25 +60,13 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
     properties.add(DiagnosticsProperty<bool>('isInscrever', _isInscrever));
   }
 
-  ///--------------------------------------------------------------------------
-  /// Default: tests
-  ///
-  AppModel() {
-    ///---does nothing
-  }
+
 
   ///--------------------------------------------------------------------------
-  /// referencia ao contexto obtido na criação do App
-  static BuildContext _context;
 
-  static AppModel instance() {
-    return Provider.of<AppModel>(_context, listen: false);
+  static AppModel instanceOf(BuildContext context) {
+    return Provider.of<AppModel>(context, listen: false);
   }
 
-  ///--------------------------------------------------------------------------
-  /// Esse construtor é usado na instanciacao do AppModel na root da widget tree
-  ///
-  AppModel.comContexto(BuildContext ctx) {
-    _context = ctx;
-  }
+
 }

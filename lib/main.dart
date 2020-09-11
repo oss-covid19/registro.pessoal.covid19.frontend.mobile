@@ -5,12 +5,15 @@ import 'package:provider/provider.dart';
 import 'app.dart';
 
 void main() => runApp(
-   MultiProvider(
-      providers: [
-         ChangeNotifierProvider(create: (context) => AppModel.comContexto(context)),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+             create: (_) => AppModel(),
+             lazy: true,
+          ),
 
-         //outros Providers
-      ],
-      child: App(),
-   ),
-);
+          //outros Providers
+        ],
+        child: App(),
+      ),
+    );

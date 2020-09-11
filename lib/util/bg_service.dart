@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:covid19_pesquisa/model/app_model.dart';
 
 ///
 /// Responsavel por executar o serviço de verificação de conexao em bg
@@ -17,7 +16,7 @@ void servicoBackground() {
 ///
 void verificador(Timer t) {
 
-   if (!AppModel.instance().hasConexao){
+   if (true){
       // verificar conexao e setar estado
    }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../util/constants.dart';
 import '../model/app_model.dart';
 
@@ -117,10 +116,10 @@ class SumarioScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      createText('Logado: ${AppModel.instance().isLogado}'),
-                      createText('Entrar: ${AppModel.instance().isEntrar}'),
-                      createText('Esqueci a Senha: ${AppModel.instance().isEsqueciASenha}'),
-                      createText('Inscrever: ${AppModel.instance().isInscrever}'),
+                      createText('Logado: ${AppModel.instanceOf(context).isLogado}'),
+                      createText('Entrar: ${AppModel.instanceOf(context).isEntrar}'),
+                      createText('Esqueci a Senha: ${AppModel.instanceOf(context).isEsqueciASenha}'),
+                      createText('Inscrever: ${AppModel.instanceOf(context).isInscrever}'),
                       //createText('1'),
                       //createText('11'),
                       //createText('111'),

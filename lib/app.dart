@@ -1,4 +1,3 @@
-import 'package:covid19_pesquisa/model/app_model.dart';
 import 'package:covid19_pesquisa/screens/navigation.dart';
 import 'package:covid19_pesquisa/util/orientacao_portrait.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,7 @@ class App extends StatelessWidget {
     defineOrientacao();
 
     return MaterialApp(
-      initialRoute: AppModel.instance().isLogado ? HOME_PAGE : LOGIN_PAGE,
+      initialRoute: LOGIN_PAGE,
       onGenerateRoute: onGenerateRoute,
     );
   }

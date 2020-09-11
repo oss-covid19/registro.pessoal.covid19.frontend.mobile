@@ -1,11 +1,12 @@
+import 'dart:ui';
+
+import 'package:covid19_pesquisa/model/app_model.dart';
+import 'package:covid19_pesquisa/screens/home_screen.dart';
+import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'dart:ui';
-import 'package:covid19_pesquisa/util/constants.dart';
-import 'package:covid19_pesquisa/screens/home_screen.dart';
-import 'package:provider/provider.dart';
+
 import '../util/constants.dart';
-import 'package:covid19_pesquisa/model/app_model.dart';
 import 'navigation.dart';
 
 class Login extends StatelessWidget {
@@ -17,10 +18,19 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Image.asset('assets/images/redcross.png', width: 110, height: 110, fit: BoxFit.cover),
+              child: Image.asset('assets/images/redcross.png',
+                  width: 110, height: 110, fit: BoxFit.cover),
             ),
-            Text('Registro Pessoal: Covid-19', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 30)),
-            Text('Entrar: ', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 30)),
+            Text('Registro Pessoal: Covid-19',
+                style: TextStyle(
+                    color: Colors.black.withOpacity(1),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30)),
+            Text('Entrar: ',
+                style: TextStyle(
+                    color: Colors.black.withOpacity(1),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30)),
             Container(
               margin: EdgeInsets.all(32),
               child: Form(
@@ -82,9 +92,18 @@ class Login extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: RaisedButton(
         onPressed: () {
-          AppModel.instance().isEntrar = true;
+          AppModel.instanceOf(context).isEntrar = true;
+          /*
+             TODO:
+             1-obter acesso aos valores nos fields
+             2-validar os valores
+             3-se validos
+                3.0 - exibir temporizador
+                3.1 - prosseguir POST(json)
+                3.2 - receber resposta
+                3.3 - esconder temporizador
+           */
           Navigator.pushNamed(context, HOME_PAGE);
-
         },
         child: const Icon(Icons.arrow_forward),
         color: Color(BUTTON_COLOR),

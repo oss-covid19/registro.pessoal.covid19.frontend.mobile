@@ -73,18 +73,6 @@ class Inscricao extends StatelessWidget {
       );
    }
 
-   Widget _manterLogado() {
-      return Row(
-         children: <Widget>[
-            Checkbox(
-               onChanged: (checked) => {},
-               value: false,
-            ),
-            Text('Manter-me logado'),
-         ],
-      );
-   }
-
    Widget _entrar(BuildContext context) {
       return Padding(
          padding: const EdgeInsets.all(16),
