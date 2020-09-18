@@ -22,7 +22,6 @@ pwd: <*hashDaSuaSenha>
 ```
 
 * Mantemos gravado tambem o email e senha (hash), pra manter o vínculo do App com você. Caso você desinstale e reinstale o App, ou mesmo instale o App em outro dispositivo você pode acessar seus dados utilizando seu email e senha (senha do App, não senha do seu email).
+  O App soma a quantidade de pessoas que estão junto com você controlando seu estado de saúde em tempo real.
 
-O App soma a quantidade de pessoas que estão junto com você controlando seu estado de saúde em tempo real.
-
-* hashDaSuaSenha: é uma impressão digital da sua senha. Não gravamos sua senha e sim a impressão digital dela, portanto não ficará gravado sequer sua senha.s
+* hashDaSuaSenha: é uma impressão digital da sua senha. Não gravamos sua senha e sim a impressão digital dela, portanto não ficará gravado sequer sua senha.
