@@ -88,16 +88,6 @@ class EsqueceuSenhaScreen extends StatelessWidget {
             print("email.valor: ${validacao.email.valor}");
             print("email.erro: ${validacao.email.erro}");
           }
-          /*
-             TODO:
-             ok.1-obter acesso aos valores nos fields
-             ok.2-validar os valores
-             3-se validos
-                3.0 - exibir temporizador
-                3.1 - prosseguir POST(json)
-                3.2 - receber resposta
-                3.3 - esconder temporizador
-           */
         },
         child: const Icon(Icons.arrow_forward),
         color: Color(BUTTON_COLOR),
