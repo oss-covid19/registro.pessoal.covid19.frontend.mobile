@@ -1,11 +1,12 @@
-import 'package:covid19_pesquisa/screens/navigation.dart';
+import 'package:covid19_pesquisa/model/app_model.dart';
+import 'package:covid19_pesquisa/screens/navigation_screens.dart';
 import 'package:flutter/material.dart';
 
 import '../util/constants.dart';
 
 ///----------------------------------------------------------------------------
 
-class Home extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -24,7 +25,7 @@ class Home extends StatelessWidget {
                 icon: const Icon(Icons.arrow_forward),
                 tooltip: 'Sumário',
                 onPressed: () {
-                  Navigator.pushNamed(context, SUMARIO_PAGE);
+                  Navigator.pushNamed(context, SUMARIO_SCREEN);
                 },
               ),
             ],
@@ -43,7 +44,7 @@ class Home extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.black.withOpacity(0.4),
                       fontWeight: FontWeight.bold,
-                      fontSize: 30),
+                      fontSize: 22),
                 ),
               ),
               //--- Botoes
@@ -61,7 +62,7 @@ class Home extends StatelessWidget {
               ),
               //--- Texto bottom
               Container(
-                margin: EdgeInsets.fromLTRB(16, 200, 0, 0),
+                margin: EdgeInsets.fromLTRB(16, 69, 0, 0),
                 child: Text(
                   TEXT_BOTTOM,
                   style: TextStyle(
@@ -111,7 +112,7 @@ class Home extends StatelessWidget {
     Widget btnConfirmar = FlatButton(
       child: Text('Confirma'),
       onPressed: () {
-        Navigator.popAndPushNamed(context, SUMARIO_PAGE);
+        Navigator.popAndPushNamed(context, SUMARIO_SCREEN);
       },
     );
 
@@ -131,17 +132,9 @@ class Home extends StatelessWidget {
     );
   }
 
-  ///--- define aspectos dos botões: cor da borda,
-  static ShapeBorder defineButtonShape() {
-    return RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(18),
-    );
-  }
+
 }
 
-ShapeBorder globalDefineButtonShape() {
-  return Home.defineButtonShape();
-}
 
 Future<bool> showDialogoSaida(BuildContext context) {
   return showDialog<bool>(
@@ -152,7 +145,11 @@ Future<bool> showDialogoSaida(BuildContext context) {
       actions: [
         FlatButton(
           child: Text('Sim'),
-          onPressed: () => Navigator.popAndPushNamed(context, LOGIN_PAGE),
+          onPressed: () {
+            AppModel.instanceOf(context).entrarValidation.reset();
+            AppModel.instanceOf(context).reset();
+            Navigator.popAndPushNamed(context, ENTRAR_SCREEN);
+          },
         ),
         FlatButton(
           child: Text('Não'),

@@ -1,17 +1,18 @@
 import 'dart:ui';
 
 import 'package:covid19_pesquisa/model/app_model.dart';
-import 'package:covid19_pesquisa/screens/home_screen.dart';
+import 'package:covid19_pesquisa/model/validacao/entrar_validacao.dart';
 import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 import '../util/constants.dart';
-import 'navigation.dart';
+import 'navigation_screens.dart';
 
-class Login extends StatelessWidget {
+class EntrarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -25,20 +26,15 @@ class Login extends StatelessWidget {
                 style: TextStyle(
                     color: Colors.black.withOpacity(1),
                     fontWeight: FontWeight.bold,
-                    fontSize: 30)),
-            Text('Entrar: ',
-                style: TextStyle(
-                    color: Colors.black.withOpacity(1),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30)),
+                    fontSize: 24)),
             Container(
               margin: EdgeInsets.all(32),
               child: Form(
                 child: Column(
                   children: <Widget>[
-                    _emailField(),
-                    _password(),
-                    _manterLogado(),
+                    _emailField(context),
+                    _password(context),
+                    _manterLogado(context),
                     _entrar(context),
                     _esqueceuSenha(context),
                   ],
@@ -51,36 +47,44 @@ class Login extends StatelessWidget {
     );
   }
 
-  Widget _emailField() {
+  Widget _emailField(BuildContext context) {
     return TextField(
       keyboardType: TextInputType.emailAddress,
       maxLength: 60,
-      onChanged: (String value) => {},
+      onChanged: (String valor) => {
+        AppModel.instanceOf(context).entrarValidation.changeEmail(valor),
+      },
       decoration: InputDecoration(
         hintText: 'email',
         labelText: 'Email',
+        errorText: AppModel.instanceOf(context).entrarValidation.email.erro,
       ),
     );
   }
 
-  Widget _password() {
+  Widget _password(BuildContext context) {
     return TextField(
       keyboardType: TextInputType.visiblePassword,
       obscureText: true,
       maxLength: 6,
-      onChanged: (String value) => {},
+      onChanged: (String valor) => {
+        AppModel.instanceOf(context).entrarValidation.changeSenha(valor),
+      },
       decoration: InputDecoration(
         labelText: 'Senha',
+        errorText: AppModel.instanceOf(context).entrarValidation.senha.erro,
       ),
     );
   }
 
-  Widget _manterLogado() {
+  Widget _manterLogado(BuildContext context) {
     return Row(
       children: <Widget>[
         Checkbox(
-          onChanged: (checked) => {},
-          value: false,
+          onChanged: (checked) {
+            AppModel.instanceOf(context).isManterLogado = checked;
+          },
+          value: AppModel.instanceOf(context).isManterLogado,
         ),
         Text('Manter-me logado'),
       ],
@@ -93,17 +97,34 @@ class Login extends StatelessWidget {
       child: RaisedButton(
         onPressed: () {
           AppModel.instanceOf(context).isEntrar = true;
+
+          EntrarValidacao validation =
+              AppModel.instanceOf(context).entrarValidation;
+
+          if (validation.isValidado()) {
+            AppModel.instanceOf(context).isLogado = true;
+            Navigator.pushNamed(context, HOME_SCREEN);
+
+          } else {
+            if (validation.isEmailVazio()) {
+              print("validation.isEmailVazio(): ${validation.isEmailVazio()}");
+              validation.defineMensagemErroEmailVazio();
+            }
+            if (validation.isSenhaVazio()) {
+              print("validation.isSenhaVazio(): ${validation.isSenhaVazio()}");
+              validation.defineMensagemErroSenhaVazio();
+            }
+          }
           /*
              TODO:
-             1-obter acesso aos valores nos fields
-             2-validar os valores
+             ok.1-obter acesso aos valores nos fields
+             ok.2-validar os valores
              3-se validos
                 3.0 - exibir temporizador
                 3.1 - prosseguir POST(json)
                 3.2 - receber resposta
                 3.3 - esconder temporizador
            */
-          Navigator.pushNamed(context, HOME_PAGE);
         },
         child: const Icon(Icons.arrow_forward),
         color: Color(BUTTON_COLOR),
@@ -117,14 +138,25 @@ class Login extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, ESQUECEU_SENHA_PAGE),
+          onTap: () {
+            AppModel.instanceOf(context).isEsqueceuASenha = true;
+            AppModel.instanceOf(context).esqueceuSenhaValidacao.reset();
+
+            Navigator.pushNamed(context, ESQUECEU_SENHA_SCREEN);
+            
+            },
           child: Container(
             child: Text('Esqueci a senha'),
             alignment: Alignment.bottomLeft,
           ),
         ),
         GestureDetector(
-          onTap: () => Navigator.pushNamed(context, INSCRICAO_PAGE),
+          onTap: () {
+            AppModel.instanceOf(context).isInscrever = true;
+
+
+            Navigator.pushNamed(context, INSCRICAO_SCREEN);
+          },
           child: Container(
             child: Text('Inscrever'),
             alignment: Alignment.bottomLeft,

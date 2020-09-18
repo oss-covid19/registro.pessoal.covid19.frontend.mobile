@@ -8,8 +8,8 @@ void main() => runApp(
       MultiProvider(
         providers: [
           ChangeNotifierProvider(
-             create: (_) => AppModel(),
-             lazy: true,
+            create: (_) => AppModel(),
+            lazy: false,
           ),
 
           //outros Providers

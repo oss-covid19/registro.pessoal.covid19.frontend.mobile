@@ -27,6 +27,7 @@ dependencies:
   http: ^0.12.2
   connectivity: ^0.4.8
   json_annotation: ^3.0.1
+  email_validator: '^1.0.0'
   
   
   # The following adds the Cupertino Icons font to your application.

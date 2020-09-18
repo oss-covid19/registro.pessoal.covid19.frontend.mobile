@@ -1,3 +1,5 @@
+import 'package:covid19_pesquisa/model/validacao/entrar_validacao.dart';
+import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_validacao.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +12,25 @@ import 'package:provider/provider.dart';
 /// isInscrever:     Ação escolhida pelo Usuário
 ///
 
-class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
+class AppModel with ChangeNotifier, DiagnosticableTreeMixin {
+  ///
+  /// Codigo de Validação para tela Entrar
+  ///
+  EntrarValidacao _entrarValidation = EntrarValidacao();
+  EntrarValidacao get entrarValidation => _entrarValidation;
+
+  ///-------------------------------------------------------------------------
+
+  ///
+  /// Codigo de Validação para tela Esqueceu a Senha
+  ///
+  EsqueceuSenhaValidacao _esqueceuSenhaValidacao = EsqueceuSenhaValidacao();
+  EsqueceuSenhaValidacao get esqueceuSenhaValidacao => _esqueceuSenhaValidacao;
+
+
+  ///-------------------------------------------------------------------------
+
+
   bool _hasConexao = false;
 
   bool get hasConexao => _hasConexao;
@@ -35,8 +55,8 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
 
   bool _isEsqueciASenha = false;
 
-  bool get isEsqueciASenha => _isEsqueciASenha;
-  set isEsqueciASenha(bool isEsqueciASenha) =>
+  bool get isEsqueceuASenha => _isEsqueciASenha;
+  set isEsqueceuASenha(bool isEsqueciASenha) =>
       {_isEsqueciASenha = isEsqueciASenha, notifyListeners()};
 
   ///-------------------------------------------------------------------------
@@ -47,6 +67,14 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
   set isInscrever(bool isInscrever) =>
       {_isInscrever = isInscrever, notifyListeners()};
 
+
+  bool _isManterLogado = false;
+
+  bool get isManterLogado => _isManterLogado;
+  set isManterLogado(bool isManterLogado) =>
+     {_isManterLogado = isManterLogado, notifyListeners()};
+
+
   ///
   /// Debugging
   ///
@@ -55,12 +83,11 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty<bool>('isLogado', _isLogado));
     properties.add(DiagnosticsProperty<bool>('isEntrar', _isEntrar));
-    properties
-        .add(DiagnosticsProperty<bool>('isEsqueciASenha', _isEsqueciASenha));
+    properties.add(DiagnosticsProperty<bool>('isEsqueciASenha', _isEsqueciASenha));
     properties.add(DiagnosticsProperty<bool>('isInscrever', _isInscrever));
+    properties.add(DiagnosticsProperty<bool>('isManterLogado', _isManterLogado));
+    properties.add(DiagnosticsProperty<bool>('hasConexao', _hasConexao));
   }
-
-
 
   ///--------------------------------------------------------------------------
 
@@ -68,5 +95,15 @@ class AppModel extends ChangeNotifier with DiagnosticableTreeMixin {
     return Provider.of<AppModel>(context, listen: false);
   }
 
-
+  ///
+  /// inicializa estados
+  ///
+  void reset() {
+    this.isManterLogado = false;
+    this.isLogado = false;
+    this.hasConexao = false;
+    this.isEntrar = false;
+    this.isEsqueceuASenha = false;
+    this.isInscrever = false;
+  }
 }

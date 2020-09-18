@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../util/constants.dart';
-import 'home_screen.dart';
-import 'navigation.dart';
+import 'navigation_screens.dart';
 
-class Inscricao extends StatelessWidget {
+class InscricaoScreen extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
       return Scaffold(
@@ -15,8 +14,8 @@ class Inscricao extends StatelessWidget {
                   Container(
                      child: Image.asset('assets/images/redcross.png', width: 110, height: 110, fit: BoxFit.cover),
                   ),
-                  Text('Registro Pessoal: Covid-19', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 30)),
-                  Text('Bem-vindo', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 30)),
+                  Text('Registro Pessoal: Covid-19', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 24)),
+                  Text('Bem-vindo', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 24)),
                   Container(
                      margin: EdgeInsets.fromLTRB(32,16,32,0),
                      child: Form(
@@ -78,7 +77,7 @@ class Inscricao extends StatelessWidget {
          padding: const EdgeInsets.all(16),
          child: RaisedButton(
             onPressed: () {
-               Navigator.pushNamed(context, HOME_PAGE);
+               Navigator.pushNamed(context, HOME_SCREEN);
             },
             child: const Icon(Icons.arrow_forward),
             color: Color(BUTTON_COLOR),
@@ -92,7 +91,7 @@ class Inscricao extends StatelessWidget {
          mainAxisAlignment: MainAxisAlignment.spaceBetween,
          children: <Widget>[
             GestureDetector(
-               onTap: () => Navigator.pushNamed(context, LOGIN_PAGE),
+               onTap: () => Navigator.pushNamed(context, ENTRAR_SCREEN),
                child: Container(
                   child: Text('Já inscrito, entrar'),
                   alignment: Alignment.bottomLeft,

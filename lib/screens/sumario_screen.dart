@@ -13,7 +13,6 @@ void main() {
 class Tester extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: APP_TITLE,
       theme: ThemeData(
@@ -28,11 +27,8 @@ class Tester extends StatelessWidget {
 ///----------------------------------------------------------------------------
 
 class SumarioScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    context = context;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(APP_TITLE),
@@ -81,7 +77,11 @@ class SumarioScreen extends StatelessWidget {
                 ],
               ),
             ),
-            createDivider(),
+            Container(
+              //height: 21,
+              margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: createDivider(),
+            ),
             Row(
               children: <Widget>[
                 Container(
@@ -118,8 +118,9 @@ class SumarioScreen extends StatelessWidget {
                     children: <Widget>[
                       createText('Logado: ${AppModel.instanceOf(context).isLogado}'),
                       createText('Entrar: ${AppModel.instanceOf(context).isEntrar}'),
-                      createText('Esqueci a Senha: ${AppModel.instanceOf(context).isEsqueciASenha}'),
+                      createText('Esqueci a Senha: ${AppModel.instanceOf(context).isEsqueceuASenha}'),
                       createText('Inscrever: ${AppModel.instanceOf(context).isInscrever}'),
+                      createText('Manter Logado: ${AppModel.instanceOf(context).isManterLogado}'),
                       //createText('1'),
                       //createText('11'),
                       //createText('111'),
@@ -138,7 +139,6 @@ class SumarioScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Column(
-
                     children: <Widget>[
                       Text(
                         'Registros Pessoais:',
@@ -149,7 +149,9 @@ class SumarioScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      createText('11',)
+                      createText(
+                        '11',
+                      )
                     ],
                   ),
                 ],
@@ -157,17 +159,13 @@ class SumarioScreen extends StatelessWidget {
             ),
             Container(
               //height: 21,
-              //margin: EdgeInsets.fromLTRB(16, 0, 0, 0),
+              margin: EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: createDivider(),
-
             ),
             Container(
               //height: 20,
               margin: EdgeInsets.fromLTRB(16, 40, 0, 0),
-              child: Text(
-                 'Projeto Open Source: https://github.com/oss-covid19',
-                  style: TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 11)
-              ),
+              child: Text('Projeto Open Source: https://github.com/oss-covid19', style: TextStyle(color: Colors.black.withOpacity(0.4), fontSize: 11)),
             ),
           ],
         ),
@@ -178,18 +176,17 @@ class SumarioScreen extends StatelessWidget {
   ///
   /// Cria um divisor entre as seções
   ///
-  createDivider(){
+  createDivider() {
     return Divider(
       color: Colors.black.withOpacity(0.2),
       thickness: 3,
-      height: 5,
+      height: 3,
     );
   }
 
-
   createText(String text) {
     return Align(
-      child: Text(text, textAlign: TextAlign.right, style: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 16)),
+      child: Text(text, textAlign: TextAlign.right, style: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 14)),
     );
   }
 }
