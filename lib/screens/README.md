@@ -5,10 +5,11 @@
 ##### Screens
 
 ```
--entrar_screen.dart
+-entrar_screen.dart                 
 -esqueceu_senha_screen.dart
+-home_screen.dart
 -inscricao_screen.dart
-
-
+-navigation_screens.dart
+-sumario_screen.dart
 ```
 
