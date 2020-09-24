@@ -1,8 +1,10 @@
 import 'package:covid19_pesquisa/model/app_model.dart';
+import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
 import 'package:covid19_pesquisa/screens/navigation_screens.dart';
 import 'package:flutter/material.dart';
 
 import '../util/constants.dart';
+import 'entrar_screen.dart';
 
 ///----------------------------------------------------------------------------
 
@@ -146,7 +148,7 @@ Future<bool> showDialogoSaida(BuildContext context) {
         FlatButton(
           child: Text('Sim'),
           onPressed: () {
-            AppModel.instanceOf(context).entrarValidation.reset();
+            EntrarScreen.instanceOf(context).reset();
             AppModel.instanceOf(context).reset();
             Navigator.popAndPushNamed(context, ENTRAR_SCREEN);
           },
