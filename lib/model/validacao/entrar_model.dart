@@ -53,7 +53,7 @@ class EntrarModel with ChangeNotifier {
     notifyListeners();
   }
 
-  bool isValidado() {
+  bool get isValido {
     _isValidado = _isEmailValidado && _isSenhaValidado;
     notifyListeners();
 
