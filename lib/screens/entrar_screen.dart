@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:covid19_pesquisa/model/app_model.dart';
 import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
-import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_model.dart';
 import 'package:covid19_pesquisa/screens/esqueceu_senha_screen.dart';
 import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:flutter/material.dart';
@@ -77,12 +76,6 @@ class EntrarScreen extends StatelessWidget {
         );
       },
     );
-  }
-
-  Consumer<T> asConsumer<T>(T validacao, Widget widget) {
-    return Consumer<T>(builder: (context, T, child) {
-      return widget;
-    });
   }
 
   Widget _manterLogado(BuildContext context) {
