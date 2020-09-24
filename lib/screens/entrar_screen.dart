@@ -43,22 +43,22 @@ class EntrarScreen extends StatelessWidget {
   }
 
   Widget _emailField(BuildContext context) {
-    return Consumer<EsqueceuSenhaModel>(builder: (context, validacao, child) {
+    return Consumer<EntrarModel>(
+       builder: (context, model, child) {
       return TextField(
         keyboardType: TextInputType.emailAddress,
         maxLength: 60,
         onChanged: (valor) => {
-          validacao.changeEmail(valor),
+          model.changeEmail(valor),
         },
         decoration: InputDecoration(
           hintText: 'email',
           labelText: 'Email',
-          errorText: validacao.email.erro,
+          errorText: model.email.erro,
         ),
       );
     });
   }
-
 
   Widget _password(BuildContext context) {
     return Consumer<EntrarModel>(
@@ -79,20 +79,17 @@ class EntrarScreen extends StatelessWidget {
     );
   }
 
-  Consumer<T> asConsumer<T>(T validacao, Widget widget ){
-    return Consumer<T>(
-      builder: (context, T, child){
-        return widget;
-      }
-    );
+  Consumer<T> asConsumer<T>(T validacao, Widget widget) {
+    return Consumer<T>(builder: (context, T, child) {
+      return widget;
+    });
   }
-
 
   Widget _manterLogado(BuildContext context) {
     return Row(
       children: <Widget>[
         Consumer<AppModel>(
-          builder: (context, model, child){
+          builder: (context, model, child) {
             return Checkbox(
               onChanged: (checked) {
                 model.isManterLogado = checked;
@@ -115,7 +112,7 @@ class EntrarScreen extends StatelessWidget {
 
           EntrarModel entrarModel = EntrarScreen.instanceOf(context);
 
-          if (entrarModel.isValidado()) {
+          if (entrarModel.isValido) {
             AppModel.instanceOf(context).isLogado = true;
             Navigator.pushNamed(context, HOME_SCREEN);
           } else {
@@ -139,7 +136,7 @@ class EntrarScreen extends StatelessWidget {
                 3.3 - esconder temporizador
            */
         },
-        child: const Icon(Icons.arrow_forward),
+        child: const Icon(Icons.arrow_upward),
         color: Color(BUTTON_COLOR),
         shape: globalDefineButtonShape(),
       ),
