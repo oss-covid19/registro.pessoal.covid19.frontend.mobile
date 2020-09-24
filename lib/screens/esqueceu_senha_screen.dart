@@ -68,6 +68,11 @@ class EsqueceuSenhaScreen extends StatelessWidget {
             Scaffold.of(context).showSnackBar(snackBar);
 
             //Navigator.pushNamed(context, HOME_PAGE);
+          } else if( instanceOf(context).isInicialValor()){
+
+            //--- caso de onPressed sem entrar valor algum
+            print('valorInicial: ${instanceOf(context).isInicialValor()}');
+            instanceOf(context).changeEmail('');
           }
         },
         child: const Icon(Icons.arrow_forward),
