@@ -27,6 +27,10 @@ class EsqueceuSenhaModel  with ChangeNotifier{
       notifyListeners();
    }
 
+   bool isInicialValor(){
+      return _email.valor == null && _email.erro == null;
+   }
+
    ///--- reinicializa valores/estados
    void reset() {
       _email = ItemModel(null, null);
