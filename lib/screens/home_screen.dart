@@ -1,5 +1,4 @@
 import 'package:covid19_pesquisa/model/app_model.dart';
-import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
 import 'package:covid19_pesquisa/screens/navigation_screens.dart';
 import 'package:flutter/material.dart';
 
