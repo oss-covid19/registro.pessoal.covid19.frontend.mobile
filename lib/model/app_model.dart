@@ -13,23 +13,6 @@ import 'package:provider/provider.dart';
 ///
 
 class AppModel with ChangeNotifier, DiagnosticableTreeMixin {
-  ///
-  /// Codigo de Validação para tela Entrar
-  ///
-  EntrarModel _entrarValidation = EntrarModel();
-  EntrarModel get entrarValidation => _entrarValidation;
-
-  ///-------------------------------------------------------------------------
-
-  ///
-  /// Codigo de Validação para tela Esqueceu a Senha
-  ///
-  EsqueceuSenhaModel _esqueceuSenhaValidacao = EsqueceuSenhaModel();
-  EsqueceuSenhaModel get esqueceuSenhaValidacao => _esqueceuSenhaValidacao;
-
-
-  ///-------------------------------------------------------------------------
-
 
   bool _hasConexao = false;
 
