@@ -1,5 +1,3 @@
-import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
-import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
