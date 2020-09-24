@@ -1,4 +1,6 @@
 import 'package:covid19_pesquisa/model/app_model.dart';
+import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
+import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,8 +13,15 @@ void main() => runApp(
             create: (_) => AppModel(),
             lazy: false,
           ),
+          ChangeNotifierProvider(
+            create: (_) => EntrarModel(),
+            lazy: false,
+          ),
+          ChangeNotifierProvider(
+            create: (_) => EsqueceuSenhaModel(),
+            lazy: false,
+          ),
 
-          //outros Providers
         ],
         child: App(),
       ),

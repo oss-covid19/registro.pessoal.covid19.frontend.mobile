@@ -1,7 +1,8 @@
-import 'package:covid19_pesquisa/model/app_model.dart';
-import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_validacao.dart';
+import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_model.dart';
 import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class EsqueceuSenhaScreen extends StatelessWidget {
   @override
@@ -16,13 +17,11 @@ class EsqueceuSenhaScreen extends StatelessWidget {
               Text('Informe seu email', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 24)),
               Container(
                 margin: EdgeInsets.all(32),
-                child: Form(
-                  child: Column(
-                    children: <Widget>[
-                      _emailField(context),
-                      _enviar(context),
-                    ],
-                  ),
+                child: Column(
+                  children: <Widget>[
+                    _emailField(context),
+                    _enviar(context),
+                  ],
                 ),
               ),
             ],
@@ -33,18 +32,21 @@ class EsqueceuSenhaScreen extends StatelessWidget {
   }
 
   Widget _emailField(BuildContext context) {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      maxLength: 60,
-      onChanged: (String valor) => {
-        AppModel.instanceOf(context).esqueceuSenhaValidacao.changeEmail(valor),
-      },
-      decoration: InputDecoration(
-        hintText: 'email',
-        labelText: 'Email',
-        errorText: AppModel.instanceOf(context).esqueceuSenhaValidacao.email.erro,
-      ),
-    );
+    return Consumer<EsqueceuSenhaModel>(
+       builder: (context, validacao, child) {
+      return TextField(
+        keyboardType: TextInputType.emailAddress,
+        maxLength: 60,
+        onChanged: (valor) => {
+          validacao.changeEmail(valor),
+        },
+        decoration: InputDecoration(
+          hintText: 'email',
+          labelText: 'Email',
+          errorText: validacao.email.erro,
+        ),
+      );
+    });
   }
 
   Widget _enviar(BuildContext context) {
@@ -52,19 +54,8 @@ class EsqueceuSenhaScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: RaisedButton(
         onPressed: () {
-          EsqueceuSenhaValidacao validacao = AppModel.instanceOf(context).esqueceuSenhaValidacao;
-
-          bool isValidado = validacao.isValidado();
-
-          print("EsqueceuSenhaValidation: $isValidado");
-          print("email.valor: ${validacao.email.valor}");
-          print("email.erro: ${validacao.email.erro}");
-
-          if (isValidado) {
+          if (instanceOf(context).isValid) {
             //--- TODO: enviar request para o Serviço: request sync, pois vai notificar de sucesso via
-
-            bool isEnviadoComSucesso = false;
-
 
             SnackBar snackBar = SnackBar(
               content: Text("Verifique seu email, foi enviado uma senha temporária", style: TextStyle(color: Colors.black, fontSize: 16)),
@@ -77,16 +68,6 @@ class EsqueceuSenhaScreen extends StatelessWidget {
             Scaffold.of(context).showSnackBar(snackBar);
 
             //Navigator.pushNamed(context, HOME_PAGE);
-          } else {
-            if (validacao.isEmailVazio()) {
-              print("validacao.isEmailVazio(): ${validacao.isEmailVazio()}");
-              validacao.defineMensagemErroEmailVazio();
-            } else {
-              validacao.defineMensagemErroEmailErro();
-            }
-            print("---------------------------------------------------------");
-            print("email.valor: ${validacao.email.valor}");
-            print("email.erro: ${validacao.email.erro}");
           }
         },
         child: const Icon(Icons.arrow_forward),
@@ -94,5 +75,9 @@ class EsqueceuSenhaScreen extends StatelessWidget {
         shape: globalDefineButtonShape(),
       ),
     );
+  }
+
+  static EsqueceuSenhaModel instanceOf(BuildContext context) {
+    return Provider.of<EsqueceuSenhaModel>(context, listen: false);
   }
 }

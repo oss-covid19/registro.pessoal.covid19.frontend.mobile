@@ -1,5 +1,5 @@
-import 'package:covid19_pesquisa/model/validacao/entrar_validacao.dart';
-import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_validacao.dart';
+import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
+import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
@@ -16,16 +16,16 @@ class AppModel with ChangeNotifier, DiagnosticableTreeMixin {
   ///
   /// Codigo de Validação para tela Entrar
   ///
-  EntrarValidacao _entrarValidation = EntrarValidacao();
-  EntrarValidacao get entrarValidation => _entrarValidation;
+  EntrarModel _entrarValidation = EntrarModel();
+  EntrarModel get entrarValidation => _entrarValidation;
 
   ///-------------------------------------------------------------------------
 
   ///
   /// Codigo de Validação para tela Esqueceu a Senha
   ///
-  EsqueceuSenhaValidacao _esqueceuSenhaValidacao = EsqueceuSenhaValidacao();
-  EsqueceuSenhaValidacao get esqueceuSenhaValidacao => _esqueceuSenhaValidacao;
+  EsqueceuSenhaModel _esqueceuSenhaValidacao = EsqueceuSenhaModel();
+  EsqueceuSenhaModel get esqueceuSenhaValidacao => _esqueceuSenhaValidacao;
 
 
   ///-------------------------------------------------------------------------

@@ -21,7 +21,7 @@ const String TEXT_BOTTOM = 'A informação é anônima nenhum dado a mais é obt
 ///
 /// Utilizado em :
 /// => entrar_validacao.dar
-/// => esqueceu_senha_validacao.dart
+/// => esqueceu_senha_model.dart
 ///
 const String EMAIL_ERRO = "Email deve ser um email valido";
 const String EMAIL_VAZIO = "Você deve informar um email valido";

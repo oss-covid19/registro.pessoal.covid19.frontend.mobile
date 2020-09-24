@@ -1,10 +1,13 @@
 import 'dart:ui';
 
 import 'package:covid19_pesquisa/model/app_model.dart';
-import 'package:covid19_pesquisa/model/validacao/entrar_validacao.dart';
+import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
+import 'package:covid19_pesquisa/model/validacao/esqueceu_senha_model.dart';
+import 'package:covid19_pesquisa/screens/esqueceu_senha_screen.dart';
 import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:provider/provider.dart';
 
 import '../util/constants.dart';
 import 'navigation_screens.dart';
@@ -12,33 +15,25 @@ import 'navigation_screens.dart';
 class EntrarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              child: Image.asset('assets/images/redcross.png',
-                  width: 110, height: 110, fit: BoxFit.cover),
+              child: Image.asset('assets/images/redcross.png', width: 110, height: 110, fit: BoxFit.cover),
             ),
-            Text('Registro Pessoal: Covid-19',
-                style: TextStyle(
-                    color: Colors.black.withOpacity(1),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24)),
+            Text('Registro Pessoal: Covid-19', style: TextStyle(color: Colors.black.withOpacity(1), fontWeight: FontWeight.bold, fontSize: 24)),
             Container(
               margin: EdgeInsets.all(32),
-              child: Form(
-                child: Column(
-                  children: <Widget>[
-                    _emailField(context),
-                    _password(context),
-                    _manterLogado(context),
-                    _entrar(context),
-                    _esqueceuSenha(context),
-                  ],
-                ),
+              child: Column(
+                children: <Widget>[
+                  _emailField(context),
+                  _password(context),
+                  _manterLogado(context),
+                  _entrar(context),
+                  _esqueceuSenha(context),
+                ],
               ),
             ),
           ],
@@ -48,43 +43,63 @@ class EntrarScreen extends StatelessWidget {
   }
 
   Widget _emailField(BuildContext context) {
-    return TextField(
-      keyboardType: TextInputType.emailAddress,
-      maxLength: 60,
-      onChanged: (String valor) => {
-        AppModel.instanceOf(context).entrarValidation.changeEmail(valor),
+    return Consumer<EsqueceuSenhaModel>(builder: (context, validacao, child) {
+      return TextField(
+        keyboardType: TextInputType.emailAddress,
+        maxLength: 60,
+        onChanged: (valor) => {
+          validacao.changeEmail(valor),
+        },
+        decoration: InputDecoration(
+          hintText: 'email',
+          labelText: 'Email',
+          errorText: validacao.email.erro,
+        ),
+      );
+    });
+  }
+
+
+  Widget _password(BuildContext context) {
+    return Consumer<EntrarModel>(
+      builder: (context, model, child) {
+        return TextField(
+          keyboardType: TextInputType.visiblePassword,
+          obscureText: true,
+          maxLength: 6,
+          onChanged: (String valor) => {
+            model.changeSenha(valor),
+          },
+          decoration: InputDecoration(
+            labelText: 'Senha',
+            errorText: model.senha.erro,
+          ),
+        );
       },
-      decoration: InputDecoration(
-        hintText: 'email',
-        labelText: 'Email',
-        errorText: AppModel.instanceOf(context).entrarValidation.email.erro,
-      ),
     );
   }
 
-  Widget _password(BuildContext context) {
-    return TextField(
-      keyboardType: TextInputType.visiblePassword,
-      obscureText: true,
-      maxLength: 6,
-      onChanged: (String valor) => {
-        AppModel.instanceOf(context).entrarValidation.changeSenha(valor),
-      },
-      decoration: InputDecoration(
-        labelText: 'Senha',
-        errorText: AppModel.instanceOf(context).entrarValidation.senha.erro,
-      ),
+  Consumer<T> asConsumer<T>(T validacao, Widget widget ){
+    return Consumer<T>(
+      builder: (context, T, child){
+        return widget;
+      }
     );
   }
+
 
   Widget _manterLogado(BuildContext context) {
     return Row(
       children: <Widget>[
-        Checkbox(
-          onChanged: (checked) {
-            AppModel.instanceOf(context).isManterLogado = checked;
+        Consumer<AppModel>(
+          builder: (context, model, child){
+            return Checkbox(
+              onChanged: (checked) {
+                model.isManterLogado = checked;
+              },
+              value: model.isManterLogado,
+            );
           },
-          value: AppModel.instanceOf(context).isManterLogado,
         ),
         Text('Manter-me logado'),
       ],
@@ -98,21 +113,19 @@ class EntrarScreen extends StatelessWidget {
         onPressed: () {
           AppModel.instanceOf(context).isEntrar = true;
 
-          EntrarValidacao validation =
-              AppModel.instanceOf(context).entrarValidation;
+          EntrarModel entrarModel = EntrarScreen.instanceOf(context);
 
-          if (validation.isValidado()) {
+          if (entrarModel.isValidado()) {
             AppModel.instanceOf(context).isLogado = true;
             Navigator.pushNamed(context, HOME_SCREEN);
-
           } else {
-            if (validation.isEmailVazio()) {
-              print("validation.isEmailVazio(): ${validation.isEmailVazio()}");
-              validation.defineMensagemErroEmailVazio();
+            if (entrarModel.isEmailVazio()) {
+              print("entrarModel.isEmailVazio(): ${entrarModel.isEmailVazio()}");
+              entrarModel.defineMensagemErroEmailVazio();
             }
-            if (validation.isSenhaVazio()) {
-              print("validation.isSenhaVazio(): ${validation.isSenhaVazio()}");
-              validation.defineMensagemErroSenhaVazio();
+            if (entrarModel.isSenhaVazio()) {
+              print("entrarModel.isSenhaVazio(): ${entrarModel.isSenhaVazio()}");
+              entrarModel.defineMensagemErroSenhaVazio();
             }
           }
           /*
@@ -140,11 +153,10 @@ class EntrarScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {
             AppModel.instanceOf(context).isEsqueceuASenha = true;
-            AppModel.instanceOf(context).esqueceuSenhaValidacao.reset();
+            EsqueceuSenhaScreen.instanceOf(context).reset();
 
             Navigator.pushNamed(context, ESQUECEU_SENHA_SCREEN);
-            
-            },
+          },
           child: Container(
             child: Text('Esqueci a senha'),
             alignment: Alignment.bottomLeft,
@@ -153,7 +165,6 @@ class EntrarScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {
             AppModel.instanceOf(context).isInscrever = true;
-
 
             Navigator.pushNamed(context, INSCRICAO_SCREEN);
           },
@@ -164,5 +175,9 @@ class EntrarScreen extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  static EntrarModel instanceOf(BuildContext context) {
+    return Provider.of<EntrarModel>(context, listen: false);
   }
 }
