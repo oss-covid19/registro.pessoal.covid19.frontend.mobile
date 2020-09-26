@@ -3,6 +3,9 @@ import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
+///
+/// Validacao formulario entrar_screen.dart
+///
 class EntrarModel with ChangeNotifier {
   ///
   /// Flag final de validade do Form
@@ -33,11 +36,11 @@ class EntrarModel with ChangeNotifier {
   }
 
   void changeSenha(String senha) {
-    if (senha.isNotEmpty && senha.length >= 4) {
+    if (senha != null && senha.isNotEmpty && senha.length >= 4) {
       _senha = ItemModel(senha, null);
       _isSenhaValidado = true;
     } else {
-      _senha = ItemModel(senha.isEmpty?null:senha, SENHA_ERRO);
+      _senha = ItemModel(null, SENHA_ERRO);
       _isSenhaValidado = false;
     }
     notifyListeners();
