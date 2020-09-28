@@ -35,7 +35,7 @@ class InscricaoModel with ChangeNotifier {
       _email = ItemModel(null, EMAIL_ERRO);
       _isEmailValidado = false;
     }
-
+    _isSenhasIguais = senha1.valor == senha2.valor;
     notifyListeners();
   }
 
@@ -47,6 +47,8 @@ class InscricaoModel with ChangeNotifier {
       _senha1 = ItemModel(null, SENHA_ERRO);
       _isSenha1Validado = false;
     }
+    _isSenhasIguais = senha1.valor == senha2.valor;
+
     notifyListeners();
   }
 
@@ -58,6 +60,8 @@ class InscricaoModel with ChangeNotifier {
       _senha2 = ItemModel(null, SENHA_ERRO);
       _isSenha2Validado = false;
     }
+    _isSenhasIguais = senha1.valor == senha2.valor;
+
     notifyListeners();
   }
 
@@ -75,7 +79,7 @@ class InscricaoModel with ChangeNotifier {
   }
 
   bool get isValido {
-    _isValidado = _isEmailValidado && _isSenha1Validado && _isSenha2Validado && _isSenhasIguais;
+    _isValidado = _isEmailValidado && _isSenha1Validado && _isSenha2Validado;
     notifyListeners();
 
     return _isValidado;
@@ -95,7 +99,7 @@ class InscricaoModel with ChangeNotifier {
   /// E os campos estão vazios
   ///
   void defineMensagemErroSenha1Vazio() {
-    _senha1 = ItemModel(null, SENHA_VAZIO);
+    _senha1 = ItemModel(null, SENHA_DEVE_CRIAR);
     notifyListeners();
   }
 
@@ -104,10 +108,20 @@ class InscricaoModel with ChangeNotifier {
   /// E os campos estão vazios
   ///
   void defineMensagemErroSenha2Vazio() {
-     _senha2 = ItemModel(null, SENHA_VAZIO);
+     _senha2 = ItemModel(null, SENHA_DEVE_CRIAR);
      notifyListeners();
   }
 
+  ///
+  /// Utilizado quando usuario tecla ->
+  /// E os campos senha1 e senha2 são desiguais
+  ///
+  void defineMensagemErroSenhasNaoIguais() {
+    _senha1 = ItemModel(_senha1.valor, SENHA_NAO_IGUAIS);
+    _senha2 = ItemModel(_senha2.valor, SENHA_NAO_IGUAIS);
+
+    notifyListeners();
+  }
 
   bool isEmailVazio() {
     return _email.valor == null || _email.valor.isEmpty;
@@ -119,5 +133,9 @@ class InscricaoModel with ChangeNotifier {
 
   bool isSenha2Vazio() {
      return _senha2.valor == null || _senha2.valor.isEmpty;
+  }
+
+  bool isSenhasIguais(){
+    return _isSenhasIguais;
   }
 }
