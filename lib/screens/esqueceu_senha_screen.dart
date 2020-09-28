@@ -58,7 +58,7 @@ class EsqueceuSenhaScreen extends StatelessWidget {
             //--- TODO: enviar request para o Serviço: request sync, pois vai notificar de sucesso via
 
             SnackBar snackBar = SnackBar(
-              content: Text("Verifique seu email, foi enviado uma senha temporária", style: TextStyle(color: Colors.black, fontSize: 16)),
+              content: Text("Por favor, verifique seu email. Enviamos uma senha temporária", style: TextStyle(color: Colors.black, fontSize: 16)),
               backgroundColor: Color(BUTTON_COLOR),
               elevation: 1,
               duration: Duration(milliseconds: 6000),

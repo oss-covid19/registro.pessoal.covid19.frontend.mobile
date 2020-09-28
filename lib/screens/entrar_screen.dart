@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:covid19_pesquisa/model/app_model.dart';
 import 'package:covid19_pesquisa/model/validacao/entrar_model.dart';
 import 'package:covid19_pesquisa/screens/esqueceu_senha_screen.dart';
+import 'package:covid19_pesquisa/screens/inscricao_screen.dart';
 import 'package:covid19_pesquisa/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -155,6 +156,9 @@ class EntrarScreen extends StatelessWidget {
         GestureDetector(
           onTap: () {
             AppModel.instanceOf(context).isInscrever = true;
+
+            //--- inicializa estado da inscricao
+            InscricaoScreen.instanceOf(context).reset();
 
             Navigator.pushNamed(context, INSCRICAO_SCREEN);
           },
