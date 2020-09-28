@@ -108,7 +108,7 @@ class EntrarScreen extends StatelessWidget {
 
           if (entrarModel.isValido) {
             AppModel.instanceOf(context).isLogado = true;
-            Navigator.pushNamed(context, HOME_SCREEN);
+            Navigator.pushReplacementNamed(context, HOME_SCREEN);
           } else {
             if (entrarModel.isEmailVazio()) {
               print("entrarModel.isEmailVazio(): ${entrarModel.isEmailVazio()}");

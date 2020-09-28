@@ -149,7 +149,9 @@ Future<bool> showDialogoSaida(BuildContext context) {
           onPressed: () {
             EntrarScreen.instanceOf(context).reset();
             AppModel.instanceOf(context).reset();
-            Navigator.popAndPushNamed(context, ENTRAR_SCREEN);
+            //Navigator.popAndPushNamed(context, ENTRAR_SCREEN);
+            Navigator.pop(c,false);
+            Navigator.pushReplacementNamed(context, ENTRAR_SCREEN);
           },
         ),
         FlatButton(
